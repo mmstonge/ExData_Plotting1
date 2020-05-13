@@ -195,19 +195,7 @@
  [921] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
  [926] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
  [931] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [936] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [941] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [946] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [951] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [956] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [961] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [966] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [971] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [976] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [981] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [986] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [991] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
- [996] "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20" "0001-02-20"
+ [936] "00
  [ reached 'max' / getOption("max.print") -- omitted 1880 entries ]
 > 
 > #deleted all the rows that had NA values
@@ -221,3 +209,14 @@ null device
           1 
 > hist(as.numeric(as.character(subpower$Global_active_power)),col="red",main="Global Active Power",xlab="Global Active Power(kilowatts)")
 
+
+> #Reading, naming and subsetting power consumption data
+> power <- read.table("household_power_consumption.txt",skip=1,sep=";")
+> names(power) <- c("Date","Time","Global_active_power","Global_reactive_power","Voltage","Global_intensity","Sub_metering_1","Sub_metering_2","Sub_metering_3")
+> subpower <- subset(power,power$Date=="1/2/2007" | power$Date =="2/2/2007")
+> 
+> #calling the basic plot function
+> hist(as.numeric(as.character(subpower$Global_active_power)),col="red",main="Global Active Power",xlab="Global Active Power(kilowatts)")
+> 
+> # annotating graph
+> title(main="Global Active Power")
